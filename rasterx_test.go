@@ -534,9 +534,9 @@ func TestGradient(t *testing.T) {
 			X: 50, Y: 50, W: 100, H: 100}, Matrix: Identity}
 
 	linearGradient.Stops = []GradStop{
-		GradStop{StopColor: colornames.Aquamarine, Offset: 0.3, Opacity: 1.0},
-		GradStop{StopColor: colornames.Skyblue, Offset: 0.6, Opacity: 1},
-		GradStop{StopColor: colornames.Darksalmon, Offset: 1.0, Opacity: .75},
+		{StopColor: colornames.Aquamarine, Offset: 0.3, Opacity: 1.0},
+		{StopColor: colornames.Skyblue, Offset: 0.6, Opacity: 1},
+		{StopColor: colornames.Darksalmon, Offset: 1.0, Opacity: .75},
 	}
 
 	radialGradient := &Gradient{Points: [5]float64{0.5, 0.5, 0.5, 0.5, 0.5},
@@ -545,9 +545,9 @@ func TestGradient(t *testing.T) {
 		Matrix: Identity, Spread: ReflectSpread}
 
 	radialGradient.Stops = []GradStop{
-		GradStop{StopColor: colornames.Orchid, Offset: 0.3, Opacity: 1},
-		GradStop{StopColor: colornames.Bisque, Offset: 0.6, Opacity: 1},
-		GradStop{StopColor: colornames.Chartreuse, Offset: 1.0, Opacity: 0.4},
+		{StopColor: colornames.Orchid, Offset: 0.3, Opacity: 1},
+		{StopColor: colornames.Bisque, Offset: 0.6, Opacity: 1},
+		{StopColor: colornames.Chartreuse, Offset: 1.0, Opacity: 0.4},
 	}
 
 	d := NewDasher(wx, wy, scannerGV)

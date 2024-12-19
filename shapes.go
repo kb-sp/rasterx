@@ -95,7 +95,7 @@ func AddRoundRect(minX, minY, maxX, maxY, rx, ry, rot float64, gf GapFunc, p Add
 	q.Stop(true)
 }
 
-//AddArc adds an arc to the adder p
+// AddArc adds an arc to the adder p
 func AddArc(points []float64, cx, cy, px, py float64, p Adder) (lx, ly float64) {
 	rotX := points[2] * math.Pi / 180 // Convert degress to radians
 	largeArc := points[3] != 0
@@ -153,7 +153,7 @@ func AddArc(points []float64, cx, cy, px, py float64, p Adder) (lx, ly float64) 
 }
 
 // ellipsePrime gives tangent vectors for parameterized elipse; a, b, radii, eta parameter, center cx, cy
-func ellipsePrime(a, b, sinTheta, cosTheta, eta, cx, cy float64) (px, py float64) {
+func ellipsePrime(a, b, sinTheta, cosTheta, eta, _, _ float64) (px, py float64) {
 	bCosEta := b * math.Cos(eta)
 	aSinEta := a * math.Sin(eta)
 	px = -aSinEta*cosTheta - bCosEta*sinTheta
