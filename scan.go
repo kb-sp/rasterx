@@ -74,10 +74,11 @@ func (s *ScannerGV) SetWinding(useNonZeroWinding bool) {
 
 // SetColor set the color type for the scanner
 func (s *ScannerGV) SetColor(clr interface{}) {
+	var imageZero image.Rectangle
 	switch c := clr.(type) {
 	case color.Color:
 		s.clipImage.ColorFuncImage.Uniform.C = c
-		if s.clipImage.clip == image.ZR {
+		if s.clipImage.clip == imageZero {
 			s.Source = &s.clipImage.ColorFuncImage.Uniform
 		} else {
 			s.clipImage.ColorFuncImage.colorFunc = func(x, y int) color.Color {
@@ -87,7 +88,7 @@ func (s *ScannerGV) SetColor(clr interface{}) {
 		}
 	case ColorFunc:
 		s.clipImage.ColorFuncImage.colorFunc = c
-		if s.clipImage.clip == image.ZR {
+		if s.clipImage.clip == imageZero {
 			s.Source = &s.clipImage.ColorFuncImage
 		} else {
 			s.Source = s.clipImage
@@ -96,7 +97,7 @@ func (s *ScannerGV) SetColor(clr interface{}) {
 }
 
 // SetClip sets an optional clipping rectangle to restrict rendering only to
-// that region -- if size is 0 then ignored (set to image.ZR to clear)
+// that region -- if size is 0 then ignored (set to image.Rectangle{} to clear)
 func (s *ScannerGV) SetClip(rect image.Rectangle) {
 	s.clipImage.clip = rect
 	if s.Source == &s.clipImage.ColorFuncImage.Uniform {

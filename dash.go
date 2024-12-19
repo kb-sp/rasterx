@@ -103,7 +103,7 @@ func (r *Dasher) SetStroke(width, miterLimit fixed.Int26_6, capL, capT CapFunc, 
 		}
 		r.Dashes = append(r.Dashes, fv)
 	}
-	if oneIsPos == false {
+	if !oneIsPos {
 		r.Dashes = r.Dashes[:0]
 		r.sgm = &r.Stroker // This is just plain stroking
 		return
@@ -112,13 +112,13 @@ func (r *Dasher) SetStroke(width, miterLimit fixed.Int26_6, capL, capT CapFunc, 
 	r.sgm = r // Use the full dasher
 }
 
-//Stop terminates a dashed line
+// Stop terminates a dashed line
 func (r *Dasher) Stop(isClosed bool) {
 	if len(r.Dashes) == 0 {
 		r.Stroker.Stop(isClosed)
 		return
 	}
-	if r.inStroke == false {
+	if !r.inStroke {
 		return
 	}
 	if isClosed && r.a != r.firstP.P {
@@ -157,11 +157,11 @@ func (r *Dasher) dashLineStrokeBit(b, bnorm fixed.Point26_6, dontClose bool) {
 		ra.Line(a.Sub(r.ln))
 		ra.Start(a.Add(r.ln))
 		ra.Line(b.Add(bnorm))
-		if dontClose == false {
+		if !dontClose {
 			r.CapL(ra, b, bnorm)
 		}
 	} else { // Moving from gap to dash
-		if dontClose == false {
+		if !dontClose {
 			ra := &r.Filler
 			r.CapT(ra, b, Invert(bnorm))
 		}

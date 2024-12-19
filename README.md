@@ -1,3 +1,9 @@
+# FORK OF srwiley/oksvg
+
+Since srwiley/oksvg has been a dead repo for a while, this is a stand-in using updated modules.
+
+If anyone knows of a better Go SVG rasterizer (canvas' SVG is inferior, IME), please let me know via an Issue.
+
 # rasterx
 
 Rasterx is a golang rasterizer that implements path stroking functions capable of SVG 2.0 compliant 'arc' joins and explicit loop closing. 
@@ -81,4 +87,3 @@ These can be included in your gopath by the following 'get' commands:
 If you want to use the freetype style antialiaser, 'go get' or clone into your workspace the scanFT package:
 
 * github.com/srwiley/scanFT 
-

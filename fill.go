@@ -27,7 +27,7 @@ type (
 		Clear()
 
 		// SetClip sets an optional clipping rectangle to restrict rendering
-		// only to that region -- if size is 0 then ignored (set to image.ZR
+		// only to that region -- if size is 0 then ignored (set to image.Rectangle{}
 		// to clear)
 		SetClip(rect image.Rectangle)
 	}

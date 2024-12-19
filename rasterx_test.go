@@ -283,7 +283,7 @@ func TestCircleLineIntersect(t *testing.T) {
 	c := fixed.Point26_6{X: 40 * 64, Y: 40 * 64}
 	r := fixed.Int26_6(10 * 64)
 	_, touching := RayCircleIntersection(a, b, c, r)
-	if touching == false {
+	if !touching {
 		t.Error("Ray not intersecting circle ", touching)
 	}
 }
@@ -306,7 +306,7 @@ func TestGeom(t *testing.T) {
 
 	c := b.Invert()
 	d := b.Mult(c)
-	if isClose(d, Identity, epsilon) == false {
+	if !isClose(d, Identity, epsilon) {
 		t.Error("Matrix inversion failed", b, c, d)
 	}
 
@@ -330,14 +330,14 @@ func TestGeom(t *testing.T) {
 }
 
 func TestToLength(t *testing.T) {
-        p := fixed.Point26_6{X: 2, Y: -2}
-        ln := fixed.I(40)
+	p := fixed.Point26_6{X: 2, Y: -2}
+	ln := fixed.I(40)
 
-        q := ToLength(p, ln)
-        expected := fixed.Point26_6{X: 1810, Y: -1810}
-        if q != expected {
-                t.Error("wrong point", q)
-        }
+	q := ToLength(p, ln)
+	expected := fixed.Point26_6{X: 1810, Y: -1810}
+	if q != expected {
+		t.Error("wrong point", q)
+	}
 }
 
 func TestShapes(t *testing.T) {
@@ -490,7 +490,7 @@ func doShapes(t *testing.T, f Scanner, fa Adder, fname string, img image.Image) 
 	f.Draw()
 	f.Clear()
 
-	f.SetClip(image.ZR)
+	f.SetClip(image.Rectangle{})
 
 	f.SetColor(colornames.Firebrick)
 	AddRect(370, 370, 400, 500, 15, fa)
@@ -572,13 +572,13 @@ func TestGradient(t *testing.T) {
 	p.AddTo(offsetPath)
 	f.Draw()
 	f.Clear()
-	scannerGV.SetClip(image.ZR)
+	scannerGV.SetClip(image.Rectangle{})
 	offsetPath.M = Identity.Translate(180, 340)
 	p.AddTo(offsetPath)
 	f.Draw()
 	f.Clear()
 	offsetPath.Reset()
-	if isClose(offsetPath.M, Identity, 1e-12) == false {
+	if !isClose(offsetPath.M, Identity, 1e-12) {
 		t.Error("path reset failed", offsetPath)
 	}
 
